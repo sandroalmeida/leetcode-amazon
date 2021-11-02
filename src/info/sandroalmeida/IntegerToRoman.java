@@ -18,26 +18,6 @@ public class IntegerToRoman {
         return sb.toString();
     }
 
-    public static String auxiliar(int digit, int factor){
-        StringBuilder result = new StringBuilder();
-        if(factor == 1){
-            if(digit < 4){
-                result.append("I".repeat(Math.max(0, digit)));
-            } else if(digit == 4){
-                result.append("IV");
-            } else if(digit == 5){
-                result.append("V");
-            } else if(digit < 9){
-                result.append("V");
-                result.append("I".repeat(digit - 5));
-            } else if(digit == 9)
-                result.append("IX");
-        }
-
-
-        return result.toString();
-    }
-
     public static void main(String[] args) {
         System.out.println(intToRoman(1));
         System.out.println(intToRoman(4));
