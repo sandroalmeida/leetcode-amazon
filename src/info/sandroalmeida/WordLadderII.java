@@ -22,15 +22,16 @@ public class WordLadderII {
         queue.add(beginWord);
         Set<String> visited = new HashSet<>();
         visited.add(beginWord);
-        List<String> currentPath = new ArrayList<>();
-        currentPath.add(beginWord);
+        List<Map.Entry<String, Integer>> completedPath = new ArrayList<>();
+        int level = 0;
+        completedPath.add(new AbstractMap.SimpleEntry<>(beginWord, level));
 
         while(!queue.isEmpty()){
+            level++;
             int length = queue.size();
             for(int i = 0; i < length; i++){
                 String currentWord = queue.poll();
                 if(currentWord.equals(endWord)){
-                    result.add(currentPath);
                     break;
                 }
                 for(int j = 0; j < currentWord.length(); j++){
@@ -39,7 +40,7 @@ public class WordLadderII {
                     if(neighbors != null){
                         for(String neighbor: neighbors){
                             if(!visited.contains(neighbor)){
-                                currentPath.add(neighbor);
+                                completedPath.add(new AbstractMap.SimpleEntry<>(neighbor, level));
                                 queue.add(neighbor);
                                 visited.add(neighbor);
                             }
@@ -47,8 +48,8 @@ public class WordLadderII {
                     }
                 }
             }
-
         }
+
         return result;
     }
 
