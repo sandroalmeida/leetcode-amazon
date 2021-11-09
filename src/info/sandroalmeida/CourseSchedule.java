@@ -31,16 +31,20 @@ public class CourseSchedule {
             }
         }
 
+        boolean[] checked = new boolean[numCourses];
         boolean[] path = new boolean[numCourses];
 
         for(int current = 0; current < numCourses; current++){
-            if(isCyclic(current, graphCourses, path))
+            if(isCyclic(current, graphCourses, path, checked))
                 return false;
         }
         return true;
     }
 
-    private static boolean isCyclic(int current, Map<Integer, List<Integer>> graphCourses, boolean[] path){
+    private static boolean isCyclic(int current, Map<Integer, List<Integer>> graphCourses, boolean[] path, boolean[] checked){
+
+        //node already checked, no cycle
+        if(checked[current]) return false;
 
         //if this node is already visited there's a cycle
         if(path[current]) return true;
@@ -54,12 +58,15 @@ public class CourseSchedule {
         // backtracking
         boolean response = false;
         for(int nextCourse: graphCourses.get(current)){
-            response = isCyclic(nextCourse, graphCourses, path);
+            response = isCyclic(nextCourse, graphCourses, path, checked);
             if(response) break;
         }
 
         // after backtracking remove node from path
         path[current] = false;
+
+        // marking as checked after complete the processing
+        checked[current] = true;
 
         return response;
     }
