@@ -5,8 +5,7 @@ public class DiameterBinaryTree {
     static int diameter;
 
     public static int diameterOfBinaryTree(TreeNode root) {
-        int test = helper(root);
-        System.out.println(test);
+        helper(root);
         return diameter;
     }
 
