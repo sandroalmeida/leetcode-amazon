@@ -46,13 +46,13 @@ public class WordSearchII {
     }
 
     public static void main(String[] args) {
-//        char[][] board = {{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'},{'i','f','l','v'}};
-//        String[] words = {"oath","pea","eat","rain"};
-//        System.out.println(findWords(board, words));
-//
-//        char[][] board2 = {{'a'}};
-//        String[] words2 = {"a"};
-//        System.out.println(findWords(board2, words2));
+        char[][] board = {{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'},{'i','f','l','v'}};
+        String[] words = {"oath","pea","eat","rain"};
+        System.out.println(findWords(board, words));
+
+        char[][] board2 = {{'a'}};
+        String[] words2 = {"a"};
+        System.out.println(findWords(board2, words2));
 
         char[][] board3 = {{'o','a','b','n'},{'o','t','a','e'},{'a','h','k','r'},{'a','f','l','v'}};
         String[] words3 = {"oa","oaa"};
