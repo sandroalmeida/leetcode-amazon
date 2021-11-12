@@ -13,7 +13,7 @@ public class MedianTwoSortedArrays_V2 {
 
         int left = 0, right = A.length - 1;
         while(true){
-            int i = (left + right) / 2;
+            int i = Math.floorDiv(left + right, 2);
             int j = half - i - 2;
 
             int ALeft = i >= 0 ? A[i] : Integer.MIN_VALUE;
@@ -22,10 +22,11 @@ public class MedianTwoSortedArrays_V2 {
             int BRight = j+1 < B.length ? B[j+1] : Integer.MAX_VALUE;
 
             if(ALeft <= BRight && BLeft <= ARight){
-                if(total % 2 > 0)
-                    return Math.min(ARight, BLeft);
-                else
+                if(total % 2 == 0)
                     return (Math.max(ALeft, BLeft) + Math.min(ARight, BRight)) / 2.0;
+                else
+                    return Math.min(ARight, BRight);
+
             } else if(ALeft > BRight){
                 right = i - 1;
             } else{
@@ -36,7 +37,7 @@ public class MedianTwoSortedArrays_V2 {
 
     public static void main(String[] args) {
         int[] nums1 = {1,3};
-        int[] nums2 = {2,4,5,9};
+        int[] nums2 = {2};
         System.out.println(findMedianSortedArrays(nums1, nums2));
     }
 }
