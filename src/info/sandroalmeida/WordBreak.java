@@ -5,17 +5,21 @@ import java.util.*;
 public class WordBreak {
 
     public static boolean wordBreak(String s, List<String> wordDict) {
-        return helper(s, new HashSet<>(wordDict), 0);
+        return helper(s, new HashSet<>(wordDict), 0, new Boolean[s.length()]);
     }
 
-    private static boolean helper(String str, Set<String> wordDict, int start){
+    private static boolean helper(String str, Set<String> wordDict, int start, Boolean[] memo){
         if(start == str.length())
             return true;
+
+        if(memo[start] != null)
+            return memo[start];
+
         for(int end = start + 1; end <= str.length(); end++){
-            if(wordDict.contains(str.substring(start,end)) && helper(str, wordDict, end))
-                return true;
+            if(wordDict.contains(str.substring(start,end)) && helper(str, wordDict, end, memo))
+                return memo[start] = true;
         }
-        return false;
+        return memo[start] = false;
     }
 
     public static void main(String[] args) {
