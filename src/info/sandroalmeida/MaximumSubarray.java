@@ -3,24 +3,15 @@ package info.sandroalmeida;
 public class MaximumSubarray {
 
     public static int maxSubArray(int[] nums) {
-        int left = 0, right = nums.length - 1;
-        int sum = 0;
-        for(int i: nums)
-            sum += i;
+        int currentSum = nums[0];
+        int maxSum = nums[0];
 
-        int partialSum = sum;
-        while(left <= right){
-
-            if(nums[left] < nums[right]){
-                partialSum -= nums[left];
-                left++;
-            } else{
-                partialSum -= nums[right];
-                right--;
-            }
-            sum = Math.max(sum, partialSum);
+        for(int i = 1; i < nums.length; i++){
+            int num = nums[i];
+            currentSum = Math.max(num, currentSum + num);
+            maxSum = Math.max(maxSum, currentSum);
         }
-        return sum;
+        return maxSum;
     }
 
     public static void main(String[] args) {
